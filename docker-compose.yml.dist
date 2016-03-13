@@ -1,0 +1,28 @@
+web:
+  image: nginx
+  ports:
+    - "8081:80"
+  volumes:
+    - ./app:/var/www
+    - ./configuration/vhost.conf:/etc/nginx/conf.d/vhost.conf
+  links:
+    - php
+php:
+  image: nmcteam/php56
+  volumes:
+    - ./configuration/php-fpm.conf:/etc/php5/fpm/php-fpm.conf
+    - ./app:/var/www
+  links:
+    - db
+db:
+  image: sameersbn/mysql
+  ports:
+   - 3311:3306
+  volumes:
+   - ./mysql:/var/lib/mysql
+  environment:
+   - DB_NAME=lo10
+   - DB_USER=lo10
+   - DB_PASS=lo10
+   - DB_REMOTE_ROOT_NAME=root
+   - DB_REMOTE_ROOT_PASS=root

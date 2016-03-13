@@ -1,0 +1,5 @@
+.idea
+app/**
+mysql/**
+configuration/vhost.conf
+docker-compose.yml
