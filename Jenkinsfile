@@ -3,7 +3,8 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh '''cd web-app
+        sh '''git checkout feature/web-app
+cd web-app
 yarn install
 gulp copy'''
       }
